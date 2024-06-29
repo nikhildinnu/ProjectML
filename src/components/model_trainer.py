@@ -66,7 +66,7 @@ class ModelTrainer:
                     # 'max_features':['auto','sqrt','log2'],
                     'n_estimators': [8,16,32,64,128,256]
                 },
-                "Linear Regression":{},
+                "Linear Regressor":{},
                 "XGBRegressor":{
                     'learning_rate':[.1,.01,.05,.001],
                     'n_estimators': [8,16,32,64,128,256]
@@ -105,11 +105,11 @@ class ModelTrainer:
                 obj=best_model
             )
 
-            predicted=best_model.presict(X_test)
+            predicted=best_model.predict(X_test)
 
-            r2_score = r2_score(Y_test, predicted)
-            logging.info(f"R2 score of model is:{r2_score}")
-            return r2_score
+            r2_square = r2_score(Y_test, predicted)
+            logging.info(f"R2 score of model is:{r2_square}")
+            return r2_square, best_model
         
         except Exception as e:
             raise CustomException(e,sys)
